@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+.head {
+/* border:2px solid black; */
+border-radius: 10px;
+display: flex;
+
+   }
+   #paragraph {
+    display: grid;
+    /* grid-template-columns: 3fr 1fr */
+   }
+   img{
+    width:40%;
+    height:40%;
+  
+   }
+   p{
+    border:2px solid black;
+    display: flex;
+    margin: 20px;
+   }
+</style>
+<body>
+    <div class="head">
+    <p id="paragraph"></p></div>
+<hr>
+    
+    
+    <script>
+        
+
+        const para=document.getElementById("paragraph");
+     
+        const api = "https://fakestoreapi.com/products";
+        fetch(api).then(response => {
+       
+           
+            if (response.ok) {
+                console.log("Successfully fetched")
+                return response.json();
+            }
+            else {
+                console.log("Failed");
+                throw new Error("Failed to fetch data");
+            }
+        })
+        .then(data => {
+            console.log(data)
+        data.map((value)=>{
+            const para1=document.createElement("p")
+            const para2=document.createElement("p")
+            const para3=document.createElement("p")
+            const para4=document.createElement("p")
+            const pic=document.createElement("img");
+            console.log(value.title)
+                para1.innerText="TITLE"+":"+value.title;
+                para2.innerText="DESCRIPTION"+":"+value.description;
+                para3.innerText="PRICE"+":"+value.price;
+                para4.innerText="CATEGORY"+":"+value.category;
+                pic.src=value.image
+                para.appendChild(para1);
+                para.appendChild(pic);
+                para.appendChild(para2);
+                para.appendChild(para3);
+                para.appendChild(para4);
+        })
+     
+    console.log(para1)
+
+    })
+    .catch(error => console.log(error));
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+</head>
+<style>
+    .registerPage
+{
+    display :none;
+}
+.loginPage
+{
+    display :none;  
+}
+small
+{
+    color:red;
+}
+</style>
+<body>
+    <div class="homepage" id="homepage">
+        <h1>WELCOME TO MALL</h1>
+        <button id="reg">If u are not registered yet?</button>
+        <button id="log">User Login</button>
+    </div>
+    <div class="container">
+     <div class="registerPage">
+        <label>USERNAME:</label><br>
+        <input type="text" name="username" id="username" placeholder="username"><br>
+        <small id="usernameErr"></small><br>
+       
+        <label>PASSWORD:</label><br>
+        <input type="password" name="password" id="pwd" placeholder="enter password.."><br>
+        <small id="passwordErr"></small><br>
+        <button type="submit" id="regSubBtn">register</button>
+     </div>
+    
+    <div class="display"></div>
+   
+       <div class="loginPage">
+        <input type="text" name="username" id="loginUser" placeholder="username">
+        <input type="password" name="password" id="loginPwd" placeholder="password...">
+        <button type="submit" id="logBtn">login</button>
+        
+    </div>
+    <script>
+        let register=document.querySelector('#reg');
+        let login=document.querySelector('#log');
+
+
+        let regPage=document.querySelector('.registerPage')
+        let logPage=document.querySelector('.loginPage');
+        let submitBtn=document.querySelector('#regSubBtn')
+        let loginBtn=document.querySelector('#logBtn');
+         
+let detial=document.querySelector(".display")
+
+        let user=document.querySelector('#username');
+       
+        let password=document.querySelector('#pwd');
+        
+        let arr=[];
+       
+        register.addEventListener('click', ()=>
+        {
+regPage.style.display="block";
+logPage.style.display="none";
+        })
+
+
+submitBtn.addEventListener('click', ()=>
+{
+    
+    const userRegex = /^[a-zA-Z]{3,16}$/;
+      
+        // const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,9}$/;
+     
+  
+    if (!user.value.match(userRegex)) {
+            document.querySelector('#usernameErr').textContent = 'Invalid username';
+            return;
+        } 
+        else {
+            document.querySelector('#usernameErr').textContent = '';
+        }
+        
+    
+        // if (!password.value.match(passwordRegex)) {
+        //     document.querySelector('#passwordErr').textContent = 'Invalid password';
+        //     return;
+        // } else {
+        //     document.querySelector('#passwordErr').textContent = '';
+        // }
+
+        let storage = {
+            name: user.value,
+           password: password.value,
+            
+        };
+        arr.push(storage);
+        console.log(arr);
+   
+    document.querySelector('#username').value="";
+    document.querySelector('#pwd').value=""
+    detial.innerText= storage.name + ":" + storage.password;
+        });
+    
+login.addEventListener('click',(e)=>
+    {
+        
+e.preventDefault();
+    logPage.style.display="block";
+    });
+
+  logBtn.addEventListener('click',(e)=>{
+  e.preventDefault();
+  console.log("fff");
+let logUser = document.querySelector('#loginUser')
+let logPwd=document.querySelector('#loginPwd')
+let luser=logUser.value;
+let puser = logPwd.value;
+const authenticatedUser =arr.find(item=>item.name === luser && item.password === puser)
+if(authenticatedUser)
+{
+    
+alert('Authentication Successfully logged');
+}
+else{
+    alert('Authentication Failure please create a  account');
+}
+ document.querySelector('#loginUser').value=""
+document.querySelector('#loginPwd').value=""
+})  
+</script>
+</body>
+</html>
