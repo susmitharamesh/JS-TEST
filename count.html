@@ -5,25 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style></style>
 <body>
-    <div class="container">
-        <span class="count"></span>
-        <button type="button" >CLICK</button>
-        </div>
-        <script>
-              let cnt=document.querySelector(".count")
-let btn = document.querySelector("button")
-let countVal=0;
-btn.addEventListener("click",()=>
+  <input type="text" id="inputBox">
+  <button type="button" id="btn-1" onclick="increament()">increament</button>
+  <button type="button" id="btn-2" onclick="decreament()">decreament</button>  
+  <script>
+    let input=document.querySelector("#inputBox");
+    let btn1=document.querySelector("#btn-1");
+    let btn2=document.querySelector("#btn-2");
+    let count=1
+    // btn1.addEventListener("click",()=>{
+    //     input.value=count++
+    //       })
+    // btn2.addEventListener("click",()=>{
+    // input.value=count--;
+    // })
+    function increament(){
+input.value=count++;
+if(count>5)
 {
-   
-    let arr=[1,2,3,4,5,6,7,8,9];
-    for(let i=0;i<arr;i++) {
-countVal[i]=countVal[i]++
-console.log(countVal);
-cnt.innerHTML=countVal[i];
+  alert("Going higher")
+}
     }
-})
-        </script>
+    function decreament(){
+        input.value=count--;
+        if(count<0)
+        {
+          alert("Going lower")
+        }
+    }
+  </script>
 </body>
 </html>
